@@ -9,7 +9,7 @@
 
 namespace World {
 
-World::World() {
+World::World(std::string) {
 	// TODO Auto-generated constructor stub
 
 }

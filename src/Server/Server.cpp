@@ -7,10 +7,12 @@
 
 #include "Server.hpp"
 
-#include <unistd.h>
 #include "../ConsoleOutput.hpp"
+#include "../Configuration.hpp"
+
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <unistd.h>
 
 namespace Server {
 
@@ -39,17 +41,17 @@ void Server::createSSLContext()
 {
 	m_openSSL_CTX = SSL_CTX_new(TLSv1_2_server_method());
 	if (!m_openSSL_CTX) {
-		ConsoleOutput::registerFatalError(ERR_error_string(ERR_get_error(),NULL),ConsoleOutput::ErrorsCode::OPENSSL_CONTEXT);
+		ConsoleOutput::registerFatalErrorWithOpenSSL("Context",ConsoleOutput::ErrorsCode::OPENSSL_CONTEXT);
 	}
 }
 
 void Server::configureSSLContext()
 {
-    if (SSL_CTX_use_certificate_file(m_openSSL_CTX, "cert.pem", SSL_FILETYPE_PEM) < 0)
-    	ConsoleOutput::registerFatalError(ERR_error_string(ERR_get_error(),NULL),ConsoleOutput::ErrorsCode::OPENSSL_CERTIFICATE);
+    if (SSL_CTX_use_certificate_file(m_openSSL_CTX, ".\cert.pem", SSL_FILETYPE_PEM) < 0)
+    	ConsoleOutput::registerFatalErrorWithOpenSSL("Certificate",ConsoleOutput::ErrorsCode::OPENSSL_CERTIFICATE);
 
-    if (SSL_CTX_use_PrivateKey_file(m_openSSL_CTX, "key.pem", SSL_FILETYPE_PEM) < 0 )
-    	ConsoleOutput::registerFatalError(ERR_error_string(ERR_get_error(),NULL),ConsoleOutput::ErrorsCode::OPENSSL_KEY);
+    if (SSL_CTX_use_PrivateKey_file(m_openSSL_CTX, ".\key.pem", SSL_FILETYPE_PEM) < 0 )
+    	ConsoleOutput::registerFatalErrorWithOpenSSL("Key",ConsoleOutput::ErrorsCode::OPENSSL_KEY);
 }
 
 void Server::openSocket()
@@ -57,18 +59,18 @@ void Server::openSocket()
     struct sockaddr_in6 addr;
 
     addr.sin6_family = AF_INET;
-    addr.sin6_port = htons(6000);
-    addr.sin6_addr.s_addr = htonl(INADDR_ANY);
+    addr.sin6_port = Configuration::getServerPort();
+    addr.sin6_addr = Configuration::getServerIP();
 
     m_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (m_socket)
-    	ConsoleOutput::registerFatalError(ERR_error_string(ERR_get_error(),NULL),ConsoleOutput::ErrorsCode::OPENSSL_KEY);
+    	ConsoleOutput::registerFatalErrorWithErrno("Socket",ConsoleOutput::ErrorsCode::SOCKET);
 
     if (bind(m_socket, (struct sockaddr*)&addr, sizeof(addr)) < 0)
-    	ConsoleOutput::registerFatalError(ERR_error_string(ERR_get_error(),NULL),ConsoleOutput::ErrorsCode::OPENSSL_KEY);
+    	ConsoleOutput::registerFatalErrorWithErrno("Bind",ConsoleOutput::ErrorsCode::SOCKET_BIND);
 
-    if (listen(m_socket, 1) < 0)
-    	ConsoleOutput::registerFatalError(ERR_error_string(ERR_get_error(),NULL),ConsoleOutput::ErrorsCode::OPENSSL_KEY);
+    if (listen(m_socket, Configuration::getListenQueue()) < 0)
+    	ConsoleOutput::registerFatalErrorWithErrno("Listen",ConsoleOutput::ErrorsCode::SOCKET_LISTEN);
 }
 
 void Server::createThreads()
@@ -95,6 +97,14 @@ void Server::theMainLoop()
 		save();
 	}
 	save();
+}
+
+void Server::acceptConnection()
+{
+	SOCKET connection_descriptor = accept(m_socket,NULL,NULL);
+	if()
+	Connection* = new Connection(connection_descriptor,m_openSSL_CTX);
+
 }
 
 } /* namespace Server */

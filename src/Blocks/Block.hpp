@@ -17,7 +17,7 @@ class Block {
 public:
 	Block(int,int,char);
 	void serialize(char*);
-	static Block* serialize(char*);
+	static Block* unserialize(char*);
 	bool processAttack(Items::Item*,Entities::Entity*);
 	virtual void render();
 	virtual ~Block();

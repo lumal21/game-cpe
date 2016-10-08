@@ -32,7 +32,7 @@ protected:
 	float m_y;
 	float m_z;
 	float m_h;
-	float m_z;
+	float m_v;
 	char m_velocityX=0;
 	char m_velocityY=0;
 	char m_velocityZ=0;
