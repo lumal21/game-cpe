@@ -13,7 +13,9 @@
 class ConsoleOutput {
 public:
 	enum ErrorsCode{
-
+		OPENSSL_CONTEXT = 1,
+		OPENSSL_CERTIFICATE,
+		OPENSSL_KEY,
 	};
 	static void registerFatalError(std::string,int);
 	static void registerError(std::string);

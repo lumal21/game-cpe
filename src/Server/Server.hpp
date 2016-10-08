@@ -34,8 +34,6 @@ protected:
 	void configureSSLContext();
 	void cleanupOpenSSL();
 	void openSocket();
-	void bindSocket();
-	void listenSocket();
 	void acceptConnection();
 	void readConnection();
 	void writeConnection();
@@ -50,6 +48,7 @@ protected:
 	std::queue<Entities::Entity*> m_entities;
 	typedef std::map<std::string,World::World*> Worlds;
 	Worlds m_world_list;
+	int m_number_of_threads=1;
 	std::thread* m_threads;
 };
 

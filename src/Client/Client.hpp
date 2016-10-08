@@ -13,6 +13,7 @@ namespace Client {
 class Client {
 public:
 	Client(int argc, char* argv[]);
+	void initGameClient();
 	virtual ~Client();
 };
 
