@@ -9,7 +9,7 @@
 
 namespace World {
 
-Chunk::Chunk() {
+Chunk::Chunk(int x,int y) {
 	// TODO Auto-generated constructor stub
 
 }

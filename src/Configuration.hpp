@@ -8,11 +8,14 @@
 #ifndef SRC_CONFIGURATION_HPP_
 #define SRC_CONFIGURATION_HPP_
 
+#include <arpa/inet.h>
+
 class Configuration {
 public:
 	static void load();
-	static getServerPort();
-	static getServerIP();
+	static uint16_t getServerPort();
+	static in6_addr getServerIP();
+	static int getListenQueue();
 };
 
 #endif /* SRC_CONFIGURATION_HPP_ */

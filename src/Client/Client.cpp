@@ -12,6 +12,7 @@
 namespace Client {
 
 Client::Client(int argc, char* argv[]) {
+	Configuration::load();
 	if(argc == 2){
 		if(argv[1] == "config")
 		{

@@ -8,6 +8,8 @@
 #ifndef SRC_SERVER_SERVER_HPP_
 #define SRC_SERVER_SERVER_HPP_
 
+#define SOCKET int
+
 #include <thread>
 #include <queue>
 #include <openssl/ssl.h>
@@ -40,7 +42,7 @@ protected:
 	void process();
 	void save();
 	void readConsole();
-	int m_socket;
+	SOCKET m_socket;
 	bool m_isRunning = true;
 	SSL_CTX* m_openSSL_CTX;
 	std::queue<Connection*> m_connections;

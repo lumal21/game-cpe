@@ -16,7 +16,12 @@ public:
 		OPENSSL_CONTEXT = 1,
 		OPENSSL_CERTIFICATE,
 		OPENSSL_KEY,
+		SOCKET,
+		SOCKET_BIND,
+		SOCKET_LISTEN,
 	};
+	static void registerFatalErrorWithErrno(std::string,int);
+	static void registerFatalErrorWithOpenSSL(std::string,int);
 	static void registerFatalError(std::string,int);
 	static void registerError(std::string);
 	static void registerEvent(std::string);
