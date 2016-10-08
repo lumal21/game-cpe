@@ -16,9 +16,13 @@ namespace Entities {
 
 class Player: public Entity {
 public:
-	Player();
+	Player(std::string,long long);
+	std::string getPlayerName();
+	long long getUIN();
 	virtual ~Player();
 protected:
+	unsigned char id=0;
+	long long m_UIN;
 	std::string m_playerName;
 };
 

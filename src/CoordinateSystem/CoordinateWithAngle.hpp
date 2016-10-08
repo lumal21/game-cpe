@@ -20,6 +20,9 @@ public:
 	CoordinateWithAngle operator+=(const Coordinate&);
 	virtual ~CoordinateWithAngle();
 protected:
+	char m_subx;
+	char m_suby;
+	char m_subz;
 	float m_h;
 	float m_v;
 };
