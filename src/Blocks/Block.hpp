@@ -14,7 +14,8 @@ namespace Blocks {
 
 class Block {
 public:
-	Block();
+	Block(CoordinateSystem::Coordinate);
+	void serialize(char[2]);
 	virtual ~Block();
 protected:
 	unsigned char m_id;

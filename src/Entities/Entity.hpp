@@ -15,9 +15,10 @@ namespace Entities {
 class Entity {
 public:
 	Entity();
+	void move(CoordinateSystem::CoordinateWithAngle);
 	virtual ~Entity();
 protected:
-	char id;
+	unsigned char id;
 	CoordinateSystem::CoordinateWithAngle m_coordinate;
 	char m_velocityX=0;
 	char m_velocityY=0;

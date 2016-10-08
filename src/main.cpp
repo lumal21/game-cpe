@@ -8,7 +8,7 @@
 
 int main()
 {
-	Client::Client client();
+	Client::Client();
 	return 0;
 }
 
