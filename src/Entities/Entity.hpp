@@ -22,6 +22,7 @@ public:
 	void setMoving(char);
 	bool processAttack(Items::Item*,Entities::Entity*);
 	void processMoving();
+	virtual void render();
 	virtual ~Entity();
 protected:
 	unsigned char m_id;

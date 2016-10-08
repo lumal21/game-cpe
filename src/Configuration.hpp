@@ -10,8 +10,9 @@
 
 class Configuration {
 public:
-	Configuration();
-	virtual ~Configuration();
+	static void load();
+	static getServerPort();
+	static getServerIP();
 };
 
 #endif /* SRC_CONFIGURATION_HPP_ */

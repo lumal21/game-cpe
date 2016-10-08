@@ -19,6 +19,7 @@ public:
 	void serialize(char*);
 	static Block* serialize(char*);
 	bool processAttack(Items::Item*,Entities::Entity*);
+	virtual void render();
 	virtual ~Block();
 protected:
 	int m_x;

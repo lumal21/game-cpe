@@ -12,8 +12,11 @@ namespace Items {
 
 class Item {
 public:
-	Item();
+	Item(char);
+	virtual void render();
 	virtual ~Item();
+protected:
+	char m_id;
 };
 
 } /* namespace Items */

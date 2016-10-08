@@ -6,11 +6,25 @@
  */
 
 #include "Client.hpp"
+#include "../Server/Server.hpp"
+#include "../ConfigProgram/ConfigProgram.hpp"
 
 namespace Client {
 
-Client::Client() {
-	// TODO Auto-generated constructor stub
+Client::Client(int argc, char* argv[]) {
+	if(argc == 2){
+		if(argv[1] == "config")
+		{
+			ConfigProgram::ConfigProgram();
+		}
+		else if(argv[1] == "server")
+		{
+			Server::Server();
+		}
+	}else{
+		Server::Server();
+		initGameClient();
+	}
 
 }
 
