@@ -19,7 +19,6 @@ public:
 	virtual ~Ping();
 protected:
 	char m_id = 0x00;
-	char m_subid =  0x00;
 };
 
 } /* namespace Entities */

@@ -12,7 +12,7 @@ namespace Client {
 
 class Client {
 public:
-	Client();
+	Client(int argc, char* argv[]);
 	virtual ~Client();
 };
 

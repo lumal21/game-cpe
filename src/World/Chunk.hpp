@@ -9,16 +9,16 @@
 #define SRC_WORLD_CHUNK_HPP_
 
 #include "../Blocks/Block.hpp"
-#include "../CoordinateSystem/Coordinate.hpp"
 
-namespace Protocol {
+namespace World {
 
 class Chunk {
 public:
 	Chunk(int,int);
 	void serialize(char*);
-	void setBlock(Blocks::Block*,CoordinateSystem::Coordinate);
-	Blocks::Block* getBlock(CoordinateSystem::Coordinate);
+	void unserialize(char*);
+	void setBlock(Blocks::Block*);
+	Blocks::Block* getBlock();
 	virtual ~Chunk();
 protected:
 	int m_x;

@@ -15,7 +15,8 @@ namespace Protocol {
 class Protocol {
 public:
 	Protocol(bool,int,std::string);
-	virtual void serialize(char*,int*) = 0;
+	virtual int serialize(char*) = 0;
+	static Protocol* unserialize(char*);
 	virtual ~Protocol();
 protected:
 	bool m_broadcast=false;

@@ -15,14 +15,17 @@
 
 #include "Connection.hpp";
 #include "../Protocol/Protocol.hpp"
+#include "../Entities/Entity.hpp"
 
 namespace Server {
 
 class Server {
 public:
 	Server();
+	void sendMessage(Protocol::Protocol*);
 	virtual ~Server();
 protected:
+	void createThreads();
 	void theMainLoop();
 	void initOpenSSL();
 	void createSSLContext();
@@ -34,12 +37,16 @@ protected:
 	void acceptConnection();
 	void readConnection();
 	void writeConnection();
+	void process();
+	void save();
 	void readConsole();
 	int m_socket;
 	bool m_isRunning = true;
 	SSL_CTX* m_openSSL_CTX;
 	std::queue<Connection*> m_connections;
 	std::queue<Protocol::Protocol*> m_messagesToSend;
+	std::queue<Protocol::Protocol*> m_messagesToProcess;
+	std::queue<Entities::Entity*> m_entities;
 	std::thread* m_threads;
 };
 

@@ -1,21 +1,21 @@
 /*
- * Chunk.cpp
+ * World.cpp
  *
  *  Created on: 8 de out de 2016
  *      Author: lumal21
  */
 
-#include "Chunk.hpp"
+#include "World.hpp"
 
 namespace World {
 
-Chunk::Chunk() {
+World::World() {
 	// TODO Auto-generated constructor stub
 
 }
 
-Chunk::~Chunk() {
+World::~World() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace Protocol */
+} /* namespace World */
