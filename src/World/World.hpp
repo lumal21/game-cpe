@@ -21,8 +21,10 @@ public:
 	void loadChunkFromFile(int,int);
 	void unloadChunk(int,int);
 	void loadChunkFromNet(char*);
+	std::string getWorldName();
 	virtual ~World();
 protected:
+	std::string m_world_name;
 	typedef std::vector<Chunk> ChunkList;
 	std::vector<ChunkList> m_chunks;
 };

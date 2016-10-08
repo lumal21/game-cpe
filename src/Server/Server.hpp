@@ -12,8 +12,10 @@
 #include <queue>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
+#include <map>
 
 #include "Connection.hpp";
+#include "../World/World.hpp"
 #include "../Protocol/Protocol.hpp"
 #include "../Entities/Entity.hpp"
 
@@ -45,8 +47,9 @@ protected:
 	SSL_CTX* m_openSSL_CTX;
 	std::queue<Connection*> m_connections;
 	std::queue<Protocol::Protocol*> m_messagesToSend;
-	std::queue<Protocol::Protocol*> m_messagesToProcess;
 	std::queue<Entities::Entity*> m_entities;
+	typedef std::map<std::string,World::World*> Worlds;
+	Worlds m_world_list;
 	std::thread* m_threads;
 };
 
