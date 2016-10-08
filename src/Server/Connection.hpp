@@ -19,10 +19,15 @@ namespace Server {
 class Connection {
 public:
 	Connection(int,SSL_CTX*);
-	bool write(Protocol::Protocol*);
+	void write(Protocol::Protocol*);
 	Protocol::Protocol* read();
 	Entities::Player* getPlayer();
 	virtual ~Connection();
+protected:
+	char* inflate(char*,int,int);
+	char* deflate(char*,int,int);
+	Entities::Player* m_player;
+	int m_remain_bytes_for_read;
 };
 
 } /* namespace Server */

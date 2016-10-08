@@ -1,21 +1,18 @@
 /*
- * Chunk.cpp
+ * ConsoleOutput.cpp
  *
  *  Created on: 8 de out de 2016
  *      Author: lumal21
  */
 
-#include "Chunk.hpp"
+#include "ConsoleOutput.h"
 
-namespace World {
-
-Chunk::Chunk() {
+ConsoleOutput::ConsoleOutput() {
 	// TODO Auto-generated constructor stub
 
 }
 
-Chunk::~Chunk() {
+ConsoleOutput::~ConsoleOutput() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace Protocol */

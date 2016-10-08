@@ -6,9 +6,9 @@
  */
 #include "Client/Client.hpp"
 
-int main()
+int main(int argc, char* argv[])
 {
-	Client::Client();
+	Client::Client(argc,argv);
 	return 0;
 }
 

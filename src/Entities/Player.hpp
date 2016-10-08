@@ -21,7 +21,7 @@ public:
 	long long getUIN();
 	virtual ~Player();
 protected:
-	unsigned char id=0;
+	unsigned char id=0x00;
 	long long m_UIN;
 	std::string m_playerName;
 };

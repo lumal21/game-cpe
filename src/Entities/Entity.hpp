@@ -8,18 +8,26 @@
 #ifndef SRC_ENTITIES_ENTITY_HPP_
 #define SRC_ENTITIES_ENTITY_HPP_
 
-#include "../CoordinateSystem/CoordinateWithAngle.hpp"
-
 namespace Entities {
 
 class Entity {
 public:
 	Entity();
-	void move(CoordinateSystem::CoordinateWithAngle);
+	virtual void serialize(char*);
+	static Entity* unserialize(char*);
+	void move(float,float,float);
+	void setAngle(float,float);
+	void setMoving(char);
+	void process();
 	virtual ~Entity();
 protected:
 	unsigned char id;
-	CoordinateSystem::CoordinateWithAngle m_coordinate;
+	unsigned char life;
+	float m_x;
+	float m_y;
+	float m_z;
+	float m_h;
+	float m_z;
 	char m_velocityX=0;
 	char m_velocityY=0;
 	char m_velocityZ=0;
