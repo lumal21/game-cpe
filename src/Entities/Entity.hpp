@@ -8,12 +8,21 @@
 #ifndef SRC_ENTITIES_ENTITY_HPP_
 #define SRC_ENTITIES_ENTITY_HPP_
 
+#include "../CoordinateSystem/CoordinateWithAngle.hpp"
+
 namespace Entities {
 
 class Entity {
 public:
 	Entity();
 	virtual ~Entity();
+protected:
+	char id;
+	CoordinateSystem::CoordinateWithAngle m_coordinate;
+	char m_velocityX=0;
+	char m_velocityY=0;
+	char m_velocityZ=0;
+	char moving=0;
 };
 
 } /* namespace Entities */

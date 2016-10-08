@@ -8,11 +8,20 @@
 #ifndef SRC_SERVER_CONNECTION_HPP_
 #define SRC_SERVER_CONNECTION_HPP_
 
+#include <openssl/ssl.h>
+#include <openssl/err.h>
+
+#include "../Protocol/Protocol.hpp"
+#include "../Entities/Player.hpp"
+
 namespace Server {
 
 class Connection {
 public:
-	Connection();
+	Connection(int,SSL_CTX*);
+	bool write(Protocol::Protocol*);
+	Protocol::Protocol* read();
+	Entities::Player* getPlayer();
 	virtual ~Connection();
 };
 

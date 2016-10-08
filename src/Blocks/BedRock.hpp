@@ -16,6 +16,10 @@ class BedRock: public Block {
 public:
 	BedRock();
 	virtual ~BedRock();
+protected:
+	unsigned char m_id=0;
+	unsigned char m_id=1;
+	unsigned char m_density = 0xFF;
 };
 
 } /* namespace Blocks */
