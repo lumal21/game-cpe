@@ -8,15 +8,16 @@
 #ifndef SRC_ITEMS_ITEM_HPP_
 #define SRC_ITEMS_ITEM_HPP_
 
+#include "../Serializable.hpp"
+#include "../Renderable.hpp"
+
 namespace Items {
 
-class Item {
+class Item: public Serializable,public Renderable {
 public:
-	Item(char);
-	virtual void render();
-	virtual ~Item();
-protected:
-	char m_id;
+	int serialize(char*);
+	static Item* unserialize(char*);
+
 };
 
 } /* namespace Items */

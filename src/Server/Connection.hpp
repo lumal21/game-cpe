@@ -11,17 +11,18 @@
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 
-#include "../Protocol/Protocol.hpp"
 #include "../Entities/Player.hpp"
+#include "../Messages/Message.hpp"
+#include "SocketPortability.hpp"
 
 namespace Server {
 
 class Connection {
 public:
-	Connection(int,SSL_CTX*);
-	void write(Protocol::Protocol*);
-	Protocol::Protocol* read();
+	Connection(SOCKET,SSL_CTX*);
 	Entities::Player* getPlayer();
+	Connection* operator<<(Messages::Message*);
+	Connection* operator>>(Messages::Message*);
 	virtual ~Connection();
 protected:
 	Entities::Player* m_player;

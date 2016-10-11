@@ -5,9 +5,9 @@
  *      Author: lumal21
  */
 
-#include "World.hpp"
+#include "../Worlds/World.hpp"
 
-namespace World {
+namespace Worlds {
 
 World::World(std::string) {
 	// TODO Auto-generated constructor stub
@@ -15,7 +15,7 @@ World::World(std::string) {
 }
 
 World::~World() {
-	// TODO Auto-generated destructor stub
+
 }
 
 } /* namespace World */

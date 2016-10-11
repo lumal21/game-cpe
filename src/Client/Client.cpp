@@ -6,6 +6,7 @@
  */
 
 #include "Client.hpp"
+#include "../Configuration.hpp"
 #include "../Server/Server.hpp"
 #include "../ConfigProgram/ConfigProgram.hpp"
 

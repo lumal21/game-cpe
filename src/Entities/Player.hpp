@@ -16,14 +16,12 @@ namespace Entities {
 
 class Player: public Entity {
 public:
-	Player(std::string,long long);
-	std::string getPlayerName();
-	long long getUIN();
-	virtual ~Player();
+	void setMove(char);
+	bool processAttack(Items::Item*,Entities::Entity*);
+	void processMoving();
 protected:
-	unsigned char id=0x00;
-	long long m_UIN;
-	std::string m_playerName;
+	const unsigned char id=0x00;
+
 };
 
 } /* namespace Entities */

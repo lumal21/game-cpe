@@ -29,7 +29,7 @@ src/ConfigProgram \
 src \
 src/Entities \
 src/Items \
-src/Protocol \
+src/Messages \
 src/Server \
 src/World \
 
