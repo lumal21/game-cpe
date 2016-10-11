@@ -8,27 +8,29 @@
 #ifndef SRC_BLOCKS_BLOCK_HPP_
 #define SRC_BLOCKS_BLOCK_HPP_
 
+#include "../Serializable.hpp"
+#include "../Renderable.hpp"
 #include "../Items/Item.hpp"
 #include "../Entities/Entity.hpp"
 
 namespace Blocks {
 
-class Block {
+class Block:public Serializable, public Renderable {
 public:
-	Block(int,int,char);
-	void serialize(char*);
+	Block(int,int,int);
+	enum BLOCKS_TYPE
+	{
+		AIR,
+		ROCK_MATRIX,
+	};
+	int serialize(char*);
 	static Block* unserialize(char*);
-	bool processAttack(Items::Item*,Entities::Entity*);
-	virtual void render();
-	virtual ~Block();
+	virtual bool processAttack(Items::Item*,Entities::Entity*) = 0;
 protected:
-	int m_x;
-	int m_y;
-	char m_z;
-	unsigned char m_id;
-	unsigned char m_subid;
-	unsigned char m_density;
-	char m_life;
+	int m_x,m_y,m_z;
+	const unsigned char m_id=0x00;
+	const unsigned char m_subid=0x00;
+	const unsigned char density=0x00;
 };
 
 } /* namespace Blocks */

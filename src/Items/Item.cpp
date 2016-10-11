@@ -9,13 +9,4 @@
 
 namespace Items {
 
-Item::Item() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Item::~Item() {
-	// TODO Auto-generated destructor stub
-}
-
 } /* namespace Items */

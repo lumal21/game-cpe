@@ -13,20 +13,22 @@
 
 #include "Chunk.hpp"
 
-namespace World {
+namespace Worlds {
 
 class World {
 public:
 	World(std::string);
 	void loadChunkFromFile(int,int);
+	void saveChunkToFile(int,int);
 	void unloadChunk(int,int);
 	void loadChunkFromNet(char*);
+	void saveWorld();
 	std::string getWorldName();
 	virtual ~World();
 protected:
 	std::string m_world_name;
-	typedef std::vector<Chunk> ChunkList;
-	std::vector<ChunkList> m_chunks;
+	typedef std::vector<std::vector<Chunk*>> ChunkList;
+	ChunkList m_chunks;
 };
 
 } /* namespace World */

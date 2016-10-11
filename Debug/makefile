@@ -10,7 +10,7 @@ RM := rm -rf
 -include sources.mk
 -include src/World/subdir.mk
 -include src/Server/subdir.mk
--include src/Protocol/subdir.mk
+-include src/Messages/subdir.mk
 -include src/Items/subdir.mk
 -include src/Entities/subdir.mk
 -include src/ConfigProgram/subdir.mk

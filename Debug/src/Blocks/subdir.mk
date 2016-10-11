@@ -4,15 +4,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/Blocks/BedRock.cpp \
+../src/Blocks/Air.cpp \
 ../src/Blocks/Block.cpp 
 
 OBJS += \
-./src/Blocks/BedRock.o \
+./src/Blocks/Air.o \
 ./src/Blocks/Block.o 
 
 CPP_DEPS += \
-./src/Blocks/BedRock.d \
+./src/Blocks/Air.d \
 ./src/Blocks/Block.d 
 
 

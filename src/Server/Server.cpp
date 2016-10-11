@@ -10,10 +10,6 @@
 #include "../ConsoleOutput.hpp"
 #include "../Configuration.hpp"
 
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-
 namespace Server {
 
 Server::Server()
@@ -27,7 +23,12 @@ Server::Server()
 
 Server::~Server()
 {
-	close(m_socket);
+	#ifdef WIN32
+		closesocket(m_socket);
+		WSACleanup();
+	#else
+		close(m_socket);
+	#endif
 	cleanupOpenSSL();
 }
 
@@ -58,18 +59,18 @@ void Server::openSocket()
 {
     struct sockaddr_in6 addr;
 
-    addr.sin6_family = AF_INET;
+    addr.sin6_family = AF_INET6;
     addr.sin6_port = Configuration::getServerPort();
     addr.sin6_addr = Configuration::getServerIP();
 
-    m_socket = socket(AF_INET, SOCK_STREAM, 0);
-    if (m_socket)
-    	ConsoleOutput::registerFatalErrorWithErrno("Socket",ConsoleOutput::ErrorsCode::SOCKET);
+    m_socket = socket(AF_INET6, SOCK_STREAM, 0);
+    if (m_socket == INVALID_SOCKET)
+    	ConsoleOutput::registerFatalErrorWithErrno("Socket",ConsoleOutput::ErrorsCode::SOCKET_CREATE);
 
-    if (bind(m_socket, (struct sockaddr*)&addr, sizeof(addr)) < 0)
+    if (bind(m_socket, (struct sockaddr*)&addr, sizeof(addr)) == SOCKET_ERROR)
     	ConsoleOutput::registerFatalErrorWithErrno("Bind",ConsoleOutput::ErrorsCode::SOCKET_BIND);
 
-    if (listen(m_socket, Configuration::getListenQueue()) < 0)
+    if (listen(m_socket, Configuration::getListenQueue()) == SOCKET_ERROR)
     	ConsoleOutput::registerFatalErrorWithErrno("Listen",ConsoleOutput::ErrorsCode::SOCKET_LISTEN);
 }
 
@@ -79,7 +80,7 @@ void Server::createThreads()
 	if(number_of_threads > 1) m_number_of_threads = number_of_threads;
 	m_threads = new std::thread[number_of_threads];
 	for(int i = 0 ; i < m_number_of_threads ; i++)
-		m_threads[i] = std::thread(theMainLoop);
+		m_threads[i] = std::thread(&Server::theMainLoop,this);
 	readConsole();
 	for(int i = 0 ; i < m_number_of_threads ; i++)
 		m_threads[i].join();
@@ -102,9 +103,12 @@ void Server::theMainLoop()
 void Server::acceptConnection()
 {
 	SOCKET connection_descriptor = accept(m_socket,NULL,NULL);
-	if()
-	Connection* = new Connection(connection_descriptor,m_openSSL_CTX);
+	if(connection_descriptor != INVALID_SOCKET){
+		Connection* connection = new Connection(connection_descriptor,m_openSSL_CTX);
 
+	}else{
+
+	}
 }
 
 } /* namespace Server */

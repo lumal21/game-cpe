@@ -9,7 +9,7 @@
 
 namespace Server {
 
-Connection::Connection() {
+Connection::Connection(int cd,SSL_CTX* ctx) {
 	// TODO Auto-generated constructor stub
 
 }

@@ -8,35 +8,26 @@
 #ifndef SRC_ENTITIES_ENTITY_HPP_
 #define SRC_ENTITIES_ENTITY_HPP_
 
+#include "../Serializable.hpp"
+#include "../Renderable.hpp"
 #include "../Items/Item.hpp"
 
 namespace Entities {
 
-class Entity {
+class Entity:public Serializable, public Renderable {
 public:
-	Entity();
-	virtual void serialize(char*);
+	Entity(float,float,float,float,float);
 	static Entity* unserialize(char*);
-	void move(float,float,float);
-	void setAngle(float,float);
-	void setMoving(char);
-	bool processAttack(Items::Item*,Entities::Entity*);
-	void processMoving();
-	virtual void render();
-	virtual ~Entity();
+	virtual bool processAttack(Items::Item*,Entities::Entity*) = 0;
+	virtual void processMoving() = 0;
 protected:
-	unsigned char m_id;
-	long long m_UIN;
-	unsigned char m_life;
+	const unsigned char m_id;
+	unsigned char m_life=0xFF;
 	float m_x;
 	float m_y;
 	float m_z;
 	float m_h;
 	float m_v;
-	char m_velocityX=0;
-	char m_velocityY=0;
-	char m_velocityZ=0;
-	char m_moving=0;
 };
 
 } /* namespace Entities */

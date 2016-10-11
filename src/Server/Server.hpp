@@ -8,17 +8,16 @@
 #ifndef SRC_SERVER_SERVER_HPP_
 #define SRC_SERVER_SERVER_HPP_
 
-#define SOCKET int
-
 #include <thread>
 #include <queue>
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 #include <map>
 
-#include "Connection.hpp";
-#include "../World/World.hpp"
-#include "../Protocol/Protocol.hpp"
+#include "SocketPortability.hpp"
+#include "Connection.hpp"
+#include "../Worlds/World.hpp"
+#include "../Messages/Message.hpp"
 #include "../Entities/Entity.hpp"
 
 namespace Server {
@@ -26,7 +25,6 @@ namespace Server {
 class Server {
 public:
 	Server();
-	void sendMessage(Protocol::Protocol*);
 	virtual ~Server();
 protected:
 	void createThreads();
@@ -46,9 +44,9 @@ protected:
 	bool m_isRunning = true;
 	SSL_CTX* m_openSSL_CTX;
 	std::queue<Connection*> m_connections;
-	std::queue<Protocol::Protocol*> m_messagesToSend;
+	std::queue<Messages::Message*> m_messagesToSend;
 	std::queue<Entities::Entity*> m_entities;
-	typedef std::map<std::string,World::World*> Worlds;
+	typedef std::map<std::string,Worlds::World*> Worlds;
 	Worlds m_world_list;
 	int m_number_of_threads=1;
 	std::thread* m_threads;
